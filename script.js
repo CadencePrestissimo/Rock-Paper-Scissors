@@ -1,70 +1,93 @@
 
 var gamePlaying,player1,player2,input;
+var res={rock:"paper",paper:"scissors",scissors:"rock"};
+var temp;
 var arr1=[];
 var arr2=[];
 init();
 
-
-function startgame(n, activePlayer, input)
+function result()
 {
-  if(activePlayer===1)
-  {
-    while(n--)
-    {
-      document.querySelector('.btn-roll-1').addEventListener('click', function() {
-      if(gamePlaying)
-      {
-      arr1.push('rock');input--;document.querySelector('.turns').textContent = input;
-      tur
-      }
-      });
+if(res[arr1[temp-input]]==arr2[temp-input])
+document.querySelector('.winner').textContent = '2';
+else
+document.querySelector('.winner').textContent = '1';
+if(input!=0)
+startgame();
+};
 
-      document.querySelector('.btn-roll-2').addEventListener('click', function() {
-      if(gamePlaying)
-      {
-      arr1.push('paper');input--;document.querySelector('.turns').textContent = input;
-      }
-      });
-
-      document.querySelector('.btn-roll-3').addEventListener('click', function() {
-      if(gamePlaying)
-      {
-      arr1.push('scissors');input--;document.querySelector('.turns').textContent = input;
-      }
-      });
-    }
-  }
-
-  if(activePlayer===2)
-  {
-    for(var i=0;i<n;i++)
-    {
+function second()
+{
 
       document.querySelector('.btn-roll-4').addEventListener('click', function() {
       if(gamePlaying)
       {
-      arr2.push('rock');
+      arr2.push('rock');input--;document.querySelector('.turns').textContent = input;
+      result();
       }
       });
 
       document.querySelector('.btn-roll-5').addEventListener('click', function() {
       if(gamePlaying)
       {
-      arr2.push('paper');
+      arr2.push('paper');input--;document.querySelector('.turns').textContent = input;
+      result();
       }
       });
 
       document.querySelector('.btn-roll-6').addEventListener('click', function() {
       if(gamePlaying)
       {
-      arr2.push('scissors');
+      arr2.push('scissors');input--;document.querySelector('.turns').textContent = input;
+      result();
       }
       });
 
-    }
-  }
+};
+
+function startgame()
+{
+      var here = document.getElementById('now');
+      now.className+=" active";
+      document.querySelector('.btn-roll-1').addEventListener('click', function() {
+      if(gamePlaying)
+      {
+      arr1.push('rock');
+      var current = document.getElementsByClassName("active");
+      var next =document.getElementById('next');
+      current[0].className = current[0].className.replace(" active", "");
+      next.className += " active";
+      second();
+      }
+      });
+
+      document.querySelector('.btn-roll-2').addEventListener('click', function() {
+      if(gamePlaying)
+      {
+      arr1.push('paper');
+      var current = document.getElementsByClassName("active");
+      var next =document.getElementById('next');
+      current[0].className = current[0].className.replace(" active", "");
+      next.className += " active";
+      second();
+      }
+      });
+
+      document.querySelector('.btn-roll-3').addEventListener('click', function() {
+      if(gamePlaying)
+      {
+      arr1.push('scissors');
+      var current = document.getElementsByClassName("active");
+      var next =document.getElementById('next');
+      current[0].className = current[0].className.replace(" active", "");
+      next.className += " active";
+      second();
+      }
+      });
+
 
 };
+
 
 
 
@@ -73,12 +96,10 @@ document.querySelector('.new-game').addEventListener('click', init);
 //initial
 function init()
 {
-    scores = 0;
-    activePlayer = 0;
     gamePlaying = true;
     document.querySelector('.winner').textContent = '0';
     input = prompt('The no of times you would like to play this game');
     document.querySelector('.turns').textContent = input;
-    activePlayer=1;
-    startgame(input,activePlayer,input);
+    temp=input;
+    startgame();
 }
